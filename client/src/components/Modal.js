@@ -15,12 +15,20 @@ const useStyles = makeStyles((theme) => ({
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
-    },
+    }
 }));
 
-function DeleteModal() {
+function CustomModal(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+
+    const renderButton = () => {
+        return (
+            <button type="button" onClick={handleOpen}>
+                react-transition-group
+            </button>
+        )
+    }
 
     const handleOpen = () => {
         setOpen(true);
@@ -32,9 +40,7 @@ function DeleteModal() {
 
     return (
         <div>
-            <button type="button" onClick={handleOpen}>
-                react-transition-group
-      </button>
+            {renderButton()}
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -49,8 +55,9 @@ function DeleteModal() {
             >
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <h2 id="transition-modal-title">Are you sure you want to delete this stream?</h2>
-                        <p id="transition-modal-description">react-transition-group animates me.</p>
+                        <h2 id="transition-modal-title">{props.title}</h2>
+                        <p id="transition-modal-description">{props.description}</p>
+                        {props.actions()}
                     </div>
                 </Fade>
             </Modal>
@@ -58,4 +65,4 @@ function DeleteModal() {
     );
 }
 
-export default DeleteModal;
+export default CustomModal;
