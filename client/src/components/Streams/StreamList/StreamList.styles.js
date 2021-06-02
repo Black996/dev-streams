@@ -9,11 +9,12 @@ const useStyles = makeStyles({
     },
     link: {
         textDecoration: "none",
+        color: "black"
 
     },
     create: {
         textAlign: "right"
-    }
+    },
 });
 
 export default useStyles;

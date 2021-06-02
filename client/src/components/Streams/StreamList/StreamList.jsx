@@ -32,7 +32,13 @@ function StreamList({ fetchStreams, streams, currentUserId, isSignedIn }) {
                     </Avatar>
             </ListItemAvatar>
             <ListItemText
-                primary={stream.title}
+                primary={
+                    <Link to={`/streams/${stream.id}`} className={classes.link}>
+                        <Typography>
+                            {stream.title}
+                        </Typography>
+                    </Link>
+                }
                 secondary={
                     <React.Fragment>
                         <Typography
