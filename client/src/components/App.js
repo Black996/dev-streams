@@ -7,7 +7,6 @@ import StreamDelete from "./Streams/StreamDelete";
 import StreamShow from "./Streams/StreamShow";
 import StreamEdit from "./Streams/StreamEdit";
 import Header from "./Header";
-import { Container, Paper } from '@material-ui/core';
 
 
 function App() {

@@ -10,7 +10,7 @@ function StreamEdit(props) {
     const { stream } = props;
     useEffect(() => {
         fetchStream(id);
-    }, []);
+    }, [fetchStream, id]);
 
 
 

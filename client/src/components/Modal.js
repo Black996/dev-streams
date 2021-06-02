@@ -20,44 +20,29 @@ const useStyles = makeStyles((theme) => ({
 
 function CustomModal(props) {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
 
-    const renderButton = () => {
-        return (
-            <button type="button" onClick={handleOpen}>
-                react-transition-group
-            </button>
-        )
-    }
 
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
 
     return (
         <div>
-            {renderButton()}
+
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
                 className={classes.modal}
-                open={open}
-                onClose={handleClose}
+                open={props.open}
+                onClose={props.onDismiss}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
                     timeout: 500,
                 }}
             >
-                <Fade in={open}>
+                <Fade in={props.open}>
                     <div className={classes.paper}>
                         <h2 id="transition-modal-title">{props.title}</h2>
                         <p id="transition-modal-description">{props.description}</p>
-                        {props.actions()}
+                        {props.actions}
                     </div>
                 </Fade>
             </Modal>
