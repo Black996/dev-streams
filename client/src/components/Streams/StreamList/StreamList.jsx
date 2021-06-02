@@ -67,7 +67,7 @@ function StreamList({ fetchStreams, streams, currentUserId, isSignedIn }) {
             }
         </ListItem>
 
-    ));
+    ))
 
     const createStreamBtn = () => {
 
