@@ -1,5 +1,5 @@
 import React from 'react'
-import { Field, reduxForm } from "redux-form";
+import { Field, Form } from "react-final-form";
 import { Button, TextField } from '@material-ui/core';
 import validate from "../../../helpers/validate";
 import useStyles from "./StreamForm.styles";
@@ -22,17 +22,39 @@ function StreamForm(props) {
     }
 
     return (
-        <form onSubmit={props.handleSubmit(onSubmit)} className={classes.root} >
+        <Form className={classes.root}
+            initialValues={props.initialValues}
+            onSubmit={onSubmit}
+            validate={(formValues) => {
+                const errors = {};
+
+                if (!formValues.title) {
+                    errors.title = "You must enter a title";
+                }
+
+                if (!formValues.description) {
+                    errors.description = "You must enter a description";
+                }
+
+                return errors;
+            }}
+            render={({ handleSubmit }) => (
+                <form onSubmit={handleSubmit} className={classes.root} >
+                    <Field name="title" label="Enter Title" component={renderInput} />
+                    <Field name="description" label="Enter Description" component={renderInput} />
+                    <Button variant="contained" color="primary" type="submit">Submit</Button>
+                </form>
+            )}
+        >
             <Field name="title" label="Enter Title" component={renderInput} />
             <Field name="description" label="Enter Description" component={renderInput} />
             <Button variant="contained" color="primary" type="submit">Submit</Button>
-        </form>
+        </ Form>
     )
 }
 
 
 
-export default reduxForm({
-    form: "streamForm",
-    validate
-})(StreamForm);
+export default StreamForm;
+
+
